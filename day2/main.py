@@ -7,13 +7,6 @@ Distributed under the Boost Software License v1.0.
 
 """
 from typing import List
-def getInput(input: str) -> List:
-    file = List[str]
-    file = []
-    with open(input) as f:
-        for line in f:
-            file.append(line.strip('\n'))
-    return file
 
 def calcGame(input: str) -> str:
     switch={
@@ -54,6 +47,7 @@ def calcScore(input: str) -> int:
     }
     opponent: int = switch.get(calcGame(input)[0])
     us: int = switch.get(calcGame(input)[2])
+
     score: int = 0
 
     # determining game states
