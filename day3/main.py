@@ -10,26 +10,25 @@ from string import ascii_letters
 from typing import List
 from helpers import *
 
+
 def findCommonItemType(input: str) -> int:
     result: int = 0
-    front: str = input[int(len(input)/2):]
-    back: str =input[:int(len(input)/2)]
-    commonItemType: str = (lambda x: x)(*set(front)&set(back))
-    result += ascii_letters.find(commonItemType)+1
+    front: str = input[int(len(input) / 2):]
+    back: str = input[:int(len(input) / 2)]
+    commonItemType: str = (lambda x: x)(*set(front) & set(back))
+    result += ascii_letters.find(commonItemType) + 1
     return result
+
 
 def findBatches(input: List[str]) -> List[int]:
     result: int = 0
     for i in range(2, len(input), 3):
-        first: str = input[i-2]
-        second: str = input[i-1]
+        first: str = input[i - 2]
+        second: str = input[i - 1]
         third: str = input[i]
-        batchItem: set = set(first)&set(second)&set(third)
-        batchItemType: str = next(iter(batchItem))
-        print(f"{batchItemType}")
-        result += ascii_letters.find(next(iter(batchItemType))) + 1
+        batchItemType: str = next(iter(set(first) & set(second) & set(third)))
+        result += ascii_letters.find(batchItemType) + 1
     return result
-
 
 
 if __name__ == '__main__':
