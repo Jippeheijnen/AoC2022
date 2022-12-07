@@ -62,8 +62,10 @@ def createNodes(commands: List[Union[CD_Command, LS_Command]], root_node: Tree_n
         if not commands[0].dir_to_go_to == '..':
             new_node: Tree_node = Tree_node(type.dir, commands[0].dir_to_go_to, parent=root_node)
             working_dir.append(commands[0].dir_to_go_to)
+            root_node.addChild(new_node)
         else:
-            new_node: Tree_node = Tree_node(type.dir, working_dir.pop(), parent=root_node)
+            new_node: Tree_node = root_node
+            working_dir.pop()
             root_node.addChild(new_node)
             return createNodes(commands[1:], root_node, working_dir)
     elif commands[0].type == type.ls:

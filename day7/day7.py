@@ -50,7 +50,7 @@ class FS_Item():
         self.size = size
         
     def __repr__(self):
-        return f'{("dir" if self.type == type.dir else "file")} {self.name} {"/" if self.type -- type.dir else self.size}'
+        return f'{self.size} {self.name}'
 
 class Tree_node:
     def __init__(self,
@@ -66,7 +66,7 @@ class Tree_node:
         self.__children: List[Tree_node] = []
 
     def __repr__(self) -> str:
-        return self.__name
+        return f"{self.__name} {self.__items}"
 
     def addChild(self, child: 'Tree_node'):
         self.__children.append(child)
