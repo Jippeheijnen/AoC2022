@@ -58,7 +58,6 @@ def createCommand(command: List[str]) -> Union[CD_Command, LS_Command]:
 
 
 def createNodes(commands: List[Union[CD_Command, LS_Command]], root_node: Tree_node = Tree_node(type.dir, 'root'), working_dir: List[str] = []) -> Tree_node:
-    new_node: Tree_node = None
     if commands[0].type == type.cd:
         if not commands[0].dir_to_go_to == '..':
             new_node: Tree_node = Tree_node(type.dir, commands[0].dir_to_go_to, parent=root_node)
@@ -66,7 +65,7 @@ def createNodes(commands: List[Union[CD_Command, LS_Command]], root_node: Tree_n
         else:
             new_node: Tree_node = Tree_node(type.dir, working_dir.pop(), parent=root_node)
             root_node.addChild(new_node)
-            return createNodes(commands[1:], new_node)
+            return createNodes(commands[1:], root_node, working_dir)
     elif commands[0].type == type.ls:
             values: List[str] = commands[0].returns
             for i in range(len(values)):
@@ -81,8 +80,9 @@ def createNodes(commands: List[Union[CD_Command, LS_Command]], root_node: Tree_n
                 else:
                     dc, name = item
                     root_node.addItem(FS_Item(type.dir, name))
+            new_node = root_node
     # shave first command off the list
-    return createNodes(commands[1:], new_node)
+    return createNodes(commands[1:], new_node, working_dir)
     
             
 

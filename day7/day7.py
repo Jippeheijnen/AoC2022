@@ -50,7 +50,7 @@ class FS_Item():
         self.size = size
         
     def __repr__(self):
-        return f'{"dir" if self.type else "file"} {self.name} {"/" if self.type else self.size}'
+        return f'{("dir" if self.type == type.dir else "file")} {self.name} {"/" if self.type -- type.dir else self.size}'
 
 class Tree_node:
     def __init__(self,
