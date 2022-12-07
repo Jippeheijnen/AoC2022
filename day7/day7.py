@@ -61,21 +61,21 @@ class Tree_node:
         self.__type: type = type
         self.__size: int = size
         self.__name: str = name
-        self.__parent: Tree_node = parent
-        self.__items: List[FS_Item] = []
-        self.__children: List[Tree_node] = []
+        self.parent: Tree_node = parent
+        self.items: List[FS_Item] = []
+        self.children: List[Tree_node] = []
 
     def __repr__(self) -> str:
-        return f"{self.__name} {self.__items}"
+        return f"{self.__name} {self.items}"
 
     def addChild(self, child: 'Tree_node'):
-        self.__children.append(child)
+        self.children.append(child)
         
     def addItem(self, item: FS_Item):
-        self.__items.append(item)
+        self.items.append(item)
 
     def getChildren(self) -> List['Tree_node']:
-        return self.__children
+        return self.children
 
     def getSize(self):
         return self.__size
